@@ -6,15 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors!</title>
     <script src="./script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="0">Rock</button>
-    <button id="1">Paper</button>
-    <button id="2">Scissors</button>
+    <div class='buttons'>
+        <button id="0">Rock</button>
+        <button id="1">Paper</button>
+        <button id="2">Scissors</button>
+    </div>
 
     <div class="result"></div>
-    <div class="playerscore"></div>
-    <div class="computerscore"></div>
+
+    <div class="scoreboard">
+        <div class="playerscore"></div>
+        <div class="computerscore"></div>
+    </div>
+
     <div class="gameover"></div>
 </body>
 </html>
