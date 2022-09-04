@@ -1,7 +1,7 @@
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
     return choice
-}
+} //Generates random number between 0 and 2 corresponding to rock paper scissors choice
 
 function getPlayerChoice() {
     let userinput = (prompt("Choose your move!")).toLowerCase();
@@ -22,7 +22,7 @@ function getPlayerChoice() {
         console.log("Invalid move!");
         return -1;
     }
-}
+}//Converts user's text into numbers between 0 and 2 corresponding to rock paper scissors choice
 
 function playRound(playerSelection, computerSelection) {
     console.log("Computer: " + computerSelection)
@@ -48,33 +48,33 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let computer = 0
-    let player = 0
+    let computer = 0;
+    let player = 0;
     for (let i = 0; i < 5; i++) {
-        let round = playRound(getPlayerChoice(),getComputerChoice())
-        console.log(round)
+        let round = playRound(getPlayerChoice(),getComputerChoice());
+        console.log(round);
         while (round == "draw" || round == "No contest!" || round == "Invalid move!") {
             round = playRound(getPlayerChoice(),getComputerChoice())
             console.log(round)
         }
         if (round == "computer")  {
-            computer++
-        }
+            computer++;
+        } //add point to "computer"
         else if (round == "player") {
-            player++
-        }
+            player++;
+        } //add point to "player"
         else {
-            console.log("error case")
+            console.log("error case");
         }
-        console.log("")
-        console.log(computer)
-        console.log(player)
-        console.log("")
+        console.log("");
+        console.log(computer);
+        console.log(player);
+        console.log("");
 
     }
-    console.log(computer)
-    console.log(player)
+    console.log(computer);
+    console.log(player);
 }
 
 
-game()
+game();
