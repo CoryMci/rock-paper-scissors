@@ -3,26 +3,13 @@ function getComputerChoice() {
     return choice
 } //Generates random number between 0 and 2 corresponding to rock paper scissors choice
 
-function getPlayerChoice() {
-    let userinput = (prompt("Choose your move!")).toLowerCase();
-
-    if (userinput == "rock") {
-        console.log("Player: 0");
-        return 0;
-    }
-    else if (userinput == "paper") {
-        console.log("Player: 1");
-        return 1;
-    }
-    else if (userinput == "scissors"){
-        console.log("Player: 2");
-        return 2;
-    }
-    else {
-        console.log("Invalid move!");
-        return -1;
-    }
-}//Converts user's text into numbers between 0 and 2 corresponding to rock paper scissors choice
+function playerMove() {
+    
+let buttons = Array.from(document.querySelectorAll("button"));
+buttons.forEach(key => key.addEventListener("mousedown", (e) => {
+    return e.target.id;
+}))
+}//Listens for click on rock, paper or scissors, returning 0, 1, or 2, respectively
 
 function playRound(playerSelection, computerSelection) {
     console.log("Computer: " + computerSelection)
@@ -76,5 +63,7 @@ function game() {
     console.log(player);
 }
 
+getPlayerChoice();
+// game();
 
-game();
+
