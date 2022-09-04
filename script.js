@@ -1,19 +1,19 @@
+let playerscore = 0;
+let computerscore = 0;
+let htmlresult = document.querySelector(".result");
+let htmlpscore = document.querySelector(".playerscore");
+let htmlcscore = document.querySelector(".computerscore");
+let gameover = document.querySelector(".gameover");
+
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
     return choice
 } //Generates random number between 0 and 2 corresponding to rock paper scissors choice
 
-function playerMove() {
-    
-let buttons = Array.from(document.querySelectorAll("button"));
-buttons.forEach(key => key.addEventListener("mousedown", (e) => {
-    return e.target.id;
-}))
-}//Listens for click on rock, paper or scissors, returning 0, 1, or 2, respectively
-
 function playRound(playerSelection, computerSelection) {
-    console.log("Computer: " + computerSelection)
+
     let result = "No contest!";
+
     if (playerSelection == computerSelection){
         result = "draw";
     }
@@ -25,45 +25,47 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection == 1 && computerSelection == 2) ||
         (playerSelection == 2 && computerSelection == 0)
         ) {
-            result = "computer";
+            result = "computer wins";
+            computerscore++;
         }
     else {
-        result = "player"
+        result = "player wins";
+        playerscore++;
     }
-        
-    return result
+
+    htmlresult.textContent = result;
+    htmlpscore.textContent = playerscore;
+    htmlcscore.textContent = computerscore;
+
+    tally();
+    return result;
 }
 
-function game() {
-    let computer = 0;
-    let player = 0;
-    for (let i = 0; i < 5; i++) {
-        let round = playRound(getPlayerChoice(),getComputerChoice());
-        console.log(round);
-        while (round == "draw" || round == "No contest!" || round == "Invalid move!") {
-            round = playRound(getPlayerChoice(),getComputerChoice())
-            console.log(round)
-        }
-        if (round == "computer")  {
-            computer++;
-        } //add point to "computer"
-        else if (round == "player") {
-            player++;
-        } //add point to "player"
-        else {
-            console.log("error case");
-        }
-        console.log("");
-        console.log(computer);
-        console.log(player);
-        console.log("");
-
+function tally() {
+    if (computerscore == 5) {
+        gameover.textContent = "GAME OVER! COMPUTER WINS!";
+        computerscore = 0;
+        playerscore = 0;
     }
-    console.log(computer);
-    console.log(player);
+    else if (playerscore == 5) {
+        gameover.textContent = "GAME OVER! PLAYER WINS!";
+        computerscore = 0;
+        playerscore = 0;
+    }
+    else {
+        gameover.textContent = "";
+    }
 }
+    
+function play() {
+    let buttons = Array.from(document.querySelectorAll("button"));
+    buttons.forEach(key => key.addEventListener("mousedown", (e) => {
+        playRound(e.target.id, getComputerChoice()) //e.target.id refers to player's choice
+    }))
+    }//Listens for click on rock, paper or scissors, returning 0, 1, or 2, respectively
 
-getPlayerChoice();
+
+play()
 // game();
 
 
